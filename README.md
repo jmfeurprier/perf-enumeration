@@ -1,7 +1,7 @@
 perf-enumeration
 ================
 
-This library allows to interact with specialized arrays: collections and maps, which can be declared as mutable or immutable.
+This library allows to interact with specialized arrays: collections and maps, which can be declared mutable or immutable.
 
 Collections are arrays which consist of a list of values, with numeric indexes (keys).
 Maps are arrays which consist of key-value pairs.
