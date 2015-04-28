@@ -101,7 +101,7 @@ class EnumerationPair
      */
     public function odd()
     {
-        return (1 === ($this->rank() % 2));
+        return (1 === ($this->rank % 2));
     }
 
     /**
@@ -111,7 +111,7 @@ class EnumerationPair
      */
     public function even()
     {
-        return (0 === ($this->rank() % 2));
+        return (0 === ($this->rank % 2));
     }
 
     /**
@@ -121,7 +121,7 @@ class EnumerationPair
      */
     public function first()
     {
-        return (1 === $this->rank());
+        return (1 === $this->rank);
     }
 
     /**
@@ -131,6 +131,6 @@ class EnumerationPair
      */
     public function last()
     {
-        return ($this->count === $this->rank());
+        return ($this->count === $this->rank);
     }
 }
