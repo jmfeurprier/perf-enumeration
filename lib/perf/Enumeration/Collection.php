@@ -10,14 +10,14 @@ class Collection implements Enumeration
 {
 
     /**
-     *
+     * "Immutable" flag.
      *
      * @var bool
      */
     private $immutable;
 
     /**
-     *
+     * Wrapped array values.
      *
      * @var mixed[]
      */
@@ -117,34 +117,30 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
+     * @throws \RuntimeException
      * @throws \UnderflowException
      */
     public function popBack()
     {
         $this->assertMutable();
+        $this->assertNotEmpty();
 
-        if (count($this->values) > 0) {
-            return array_pop($this->values);
-        }
-
-        throw new \UnderflowException();
+        return array_pop($this->values);
     }
 
     /**
      *
      *
      * @return mixed
+     * @throws \RuntimeException
      * @throws \UnderflowException
      */
     public function popFront()
     {
         $this->assertMutable();
+        $this->assertNotEmpty();
 
-        if (count($this->values) > 0) {
-            return array_shift($this->values);
-        }
-
-        throw new \UnderflowException();
+        return array_shift($this->values);
     }
 
     /**
@@ -182,9 +178,7 @@ class Collection implements Enumeration
      */
     public function first()
     {
-        if ($this->isEmpty()) {
-            throw new \UnderflowException();
-        }
+        $this->assertNotEmpty();
 
         return reset($this->values);
     }
@@ -197,9 +191,7 @@ class Collection implements Enumeration
      */
     public function last()
     {
-        if ($this->isEmpty()) {
-            throw new \UnderflowException();
-        }
+        $this->assertNotEmpty();
 
         return end($this->values);
     }
@@ -255,6 +247,19 @@ class Collection implements Enumeration
     {
         if ($this->immutable) {
             throw new \RuntimeException('Collection is not mutable.');
+        }
+    }
+
+    /**
+     *
+     *
+     * @return void
+     * @throws \UnderflowException
+     */
+    private function assertNotEmpty()
+    {
+        if ($this->isEmpty()) {
+            throw new \UnderflowException('Collection is empty.');
         }
     }
 }
