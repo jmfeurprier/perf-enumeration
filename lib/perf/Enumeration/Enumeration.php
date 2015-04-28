@@ -27,7 +27,7 @@ interface Enumeration extends \IteratorAggregate
     /**
      *
      *
-     * @return array
+     * @return bool
      */
     public function isEmpty();
 
