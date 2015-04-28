@@ -25,9 +25,9 @@ Install with [Composer](http://getcomposer.org):
 
 ## Usage
 
-1. Collections
+### Collections
 
-1.1. Basic operations
+#### Basic operations
 
 ```php
 <?php
@@ -64,7 +64,7 @@ $lastValue = $collection->last(); // 'baz'
 
 ```
 
-1.2. Iteration
+#### Iteration
 
 ```php
 <?php
@@ -92,9 +92,9 @@ foreach ($collection as $pair) {
 
 ```
 
-2. Maps
+### Maps
 
-2.1. Basic operations
+#### Basic operations
 
 ```php
 <?php
@@ -127,7 +127,7 @@ if ($map->has('foo')) { // true
 
 ```
 
-2.2. Iteration
+#### Iteration
 
 ```php
 <?php
