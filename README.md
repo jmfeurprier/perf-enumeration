@@ -52,7 +52,7 @@ if ($collection->isEmpty()) { // false
 
 $size = $collection->getSize(); // 3
 
-if ($collection->has(1)) {
+if ($collection->has(1)) { // true
 	$value = $collection->get(1); // 'bar'
 
 	// ...
@@ -82,6 +82,69 @@ $collection = Collection::createImmutable($array);
 foreach ($collection as $pair) {
 	$pair->key();   // 0,     1,     2
 	$pair->value(); // 'foo', 'bar', 'baz'
+	$pair->index(); // 0,     1,     2
+	$pair->rank();  // 1,     2,     3
+	$pair->odd();   // true,  false, true
+	$pair->even();  // false, true,  false
+	$pair->first(); // true,  false, false
+	$pair->last();  // false, false, true
+}
+
+```
+
+2. Maps
+
+2.1. Basic operations
+
+```php
+<?php
+
+use perf\Enumeration\Map;
+
+$array = (
+	'foo' => 123,
+	'bar' => 234,
+	'baz' => 345,
+);
+
+$map = Map::createMutable($array);
+
+if ($map->contains(123)) { // true
+	// ...
+}
+
+if ($map->isEmpty()) { // false
+	// ...
+}
+
+$size = $map->getSize(); // 3
+
+if ($map->has('foo')) { // true
+	$value = $map->get('foo'); // 123
+
+	// ...
+}
+
+```
+
+2.2. Iteration
+
+```php
+<?php
+
+use perf\Enumeration\Map;
+
+$array = (
+	'foo' => 123,
+	'bar' => 234,
+	'baz' => 345,
+);
+
+$map = Map::createImmutable($array);
+
+foreach ($map as $pair) {
+	$pair->key();   // 'foo', 'bar', 'baz'
+	$pair->value(); // 123,   234,   345
 	$pair->index(); // 0,     1,     2
 	$pair->rank();  // 1,     2,     3
 	$pair->odd();   // true,  false, true
