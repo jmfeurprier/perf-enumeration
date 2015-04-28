@@ -119,7 +119,7 @@ class Map implements Enumeration
      *
      * @param string $key
      * @return mixed
-     * @throws \DomainException
+     * @throws \NonExistentMapKeyException
      */
     public function get($key)
     {
@@ -127,7 +127,7 @@ class Map implements Enumeration
             return $this->values[$key];
         }
 
-        throw new \DomainException("No value for key '{$key}'.");
+        throw new \NonExistentMapKeyException("No value for key '{$key}'.");
     }
 
     /**
@@ -186,12 +186,12 @@ class Map implements Enumeration
      *
      *
      * @return void
-     * @throws \RuntimeException
+     * @throws \NotMutableEnumerationException
      */
     private function assertMutable()
     {
         if ($this->immutable) {
-            throw new \RuntimeException('Map is not mutable.');
+            throw new \NotMutableEnumerationException('Map is not mutable.');
         }
     }
 }

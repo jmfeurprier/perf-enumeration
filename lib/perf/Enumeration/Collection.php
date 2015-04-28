@@ -117,8 +117,8 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \RuntimeException
-     * @throws \UnderflowException
+     * @throws \NotMutableEnumerationException
+     * @throws \EmptyEnumerationException
      */
     public function popBack()
     {
@@ -132,8 +132,8 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \RuntimeException
-     * @throws \UnderflowException
+     * @throws \NotMutableEnumerationException
+     * @throws \EmptyEnumerationException
      */
     public function popFront()
     {
@@ -148,7 +148,7 @@ class Collection implements Enumeration
      *
      * @param int $index
      * @return mixed
-     * @throws \DomainException
+     * @throws \NonExistentCollectionIndexException
      */
     public function get($index)
     {
@@ -156,7 +156,7 @@ class Collection implements Enumeration
             return $this->values[$index];
         }
 
-        throw new \DomainException("No value for index '{$index}'.");
+        throw new \NonExistentCollectionIndexException("No value for index '{$index}'.");
     }
 
     /**
@@ -174,7 +174,7 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \UnderflowException
+     * @throws \EmptyEnumerationException
      */
     public function first()
     {
@@ -187,7 +187,7 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \UnderflowException
+     * @throws \EmptyEnumerationException
      */
     public function last()
     {
@@ -241,12 +241,12 @@ class Collection implements Enumeration
      *
      *
      * @return void
-     * @throws \RuntimeException
+     * @throws \NotMutableEnumerationException
      */
     private function assertMutable()
     {
         if ($this->immutable) {
-            throw new \RuntimeException('Collection is not mutable.');
+            throw new \NotMutableEnumerationException('Collection is not mutable.');
         }
     }
 
@@ -254,12 +254,12 @@ class Collection implements Enumeration
      *
      *
      * @return void
-     * @throws \UnderflowException
+     * @throws \EmptyEnumerationException
      */
     private function assertNotEmpty()
     {
         if ($this->isEmpty()) {
-            throw new \UnderflowException('Collection is empty.');
+            throw new \EmptyEnumerationException('Collection is empty.');
         }
     }
 }
