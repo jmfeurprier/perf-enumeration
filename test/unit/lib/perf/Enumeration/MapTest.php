@@ -21,8 +21,6 @@ class MapTest extends \PHPUnit_Framework_TestCase
         $map = Map::createMutable($items);
     }
 
-
-
     /**
      *
      */
@@ -133,7 +131,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testHasWithExistingIndexWillReturnTrue()
+    public function testHasWithExistingKeyWillReturnTrue()
     {
         $key = 'foo';
         
@@ -144,5 +142,130 @@ class MapTest extends \PHPUnit_Framework_TestCase
         $map = Map::createImmutable($values);
 
         $this->assertTrue($map->has($key));
+    }
+
+    /**
+     *
+     */
+    public function testHasWithNonExistingKeyWillReturnFalse()
+    {
+        $key = 'foo';
+        
+        $values = array();
+
+        $map = Map::createImmutable($values);
+
+        $this->assertFalse($map->has($key));
+    }
+
+    /**
+     *
+     */
+    public function testGetWithExistingKeyWillReturnExpected()
+    {
+        $key   = 'foo';
+        $value = 'bar';
+
+        $values = array(
+            $key => $value,
+        );
+        
+        $map = Map::createImmutable($values);
+
+        $this->assertSame($value, $map->get($key));
+    }
+
+    /**
+     *
+     * @expectedException \perf\Enumeration\NonExistentMapKeyException
+     */
+    public function testGetWithNonExistingKeyWillThrowException()
+    {
+        $key   = 'foo';
+
+        $values = array();
+        
+        $map = Map::createImmutable($values);
+
+        $map->get($key);
+    }
+
+    /**
+     *
+     * @expectedException \perf\Enumeration\NotMutableEnumerationException
+     */
+    public function testSetWithImmutableMapWillThrowException()
+    {
+        $key   = 'foo';
+        $value = 'bar';
+        
+        $map = Map::createImmutable(array());
+
+        $map->set($key, $value);
+    }
+
+    /**
+     *
+     */
+    public function testSetWithMutableMap()
+    {
+        $key   = 'foo';
+        $value = 'bar';
+        
+        $map = Map::createMutable();
+
+        $map->set($key, $value);
+
+        $this->assertTrue($map->has($key));
+        $this->assertSame($value, $map->get($key));
+    }
+
+    /**
+     *
+     * @expectedException \perf\Enumeration\NotMutableEnumerationException
+     */
+    public function testRemoveWithImmutableMapWillThrowException()
+    {
+        $key = 'foo';
+        
+        $map = Map::createImmutable(array());
+
+        $map->remove($key);
+    }
+
+    /**
+     *
+     */
+    public function testRemoveWithMutableMap()
+    {
+        $key   = 'foo';
+        $value = 'bar';
+
+        $values = array(
+            $key => $value,
+        );
+        
+        $map = Map::createMutable($values);
+
+        $map->remove($key);
+
+        $this->assertFalse($map->has($key));
+    }
+
+    /**
+     *
+     */
+    public function testMapConvertedToArray()
+    {
+        $key   = 'foo';
+        $value = 'bar';
+
+        $values = array(
+            $key => $value,
+        );
+        
+        $map = Map::createImmutable($values);
+
+        $this->assertSame($values, $map->toArray());
     }
 }

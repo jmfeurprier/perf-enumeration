@@ -89,6 +89,7 @@ class Map implements Enumeration
      * @param string $key
      * @param mixed $value
      * @return Map
+     * @throws NotMutableEnumerationException
      */
     public function set($key, $value)
     {
@@ -104,6 +105,7 @@ class Map implements Enumeration
      *
      * @param string $key
      * @return Map
+     * @throws NotMutableEnumerationException
      */
     public function remove($key)
     {
