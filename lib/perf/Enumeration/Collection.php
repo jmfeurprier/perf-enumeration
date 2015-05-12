@@ -117,8 +117,8 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \NotMutableEnumerationException
-     * @throws \EmptyEnumerationException
+     * @throws NotMutableEnumerationException
+     * @throws EmptyEnumerationException
      */
     public function popBack()
     {
@@ -132,8 +132,8 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \NotMutableEnumerationException
-     * @throws \EmptyEnumerationException
+     * @throws NotMutableEnumerationException
+     * @throws EmptyEnumerationException
      */
     public function popFront()
     {
@@ -148,7 +148,7 @@ class Collection implements Enumeration
      *
      * @param int $index
      * @return mixed
-     * @throws \NonExistentCollectionIndexException
+     * @throws NonExistentCollectionIndexException
      */
     public function get($index)
     {
@@ -156,7 +156,7 @@ class Collection implements Enumeration
             return $this->values[$index];
         }
 
-        throw new \NonExistentCollectionIndexException("No value for index '{$index}'.");
+        throw new NonExistentCollectionIndexException("No value for index '{$index}'.");
     }
 
     /**
@@ -174,7 +174,7 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \EmptyEnumerationException
+     * @throws EmptyEnumerationException
      */
     public function first()
     {
@@ -187,7 +187,7 @@ class Collection implements Enumeration
      *
      *
      * @return mixed
-     * @throws \EmptyEnumerationException
+     * @throws EmptyEnumerationException
      */
     public function last()
     {
@@ -241,12 +241,12 @@ class Collection implements Enumeration
      *
      *
      * @return void
-     * @throws \NotMutableEnumerationException
+     * @throws NotMutableEnumerationException
      */
     private function assertMutable()
     {
         if ($this->immutable) {
-            throw new \NotMutableEnumerationException('Collection is not mutable.');
+            throw new NotMutableEnumerationException('Collection is not mutable.');
         }
     }
 
@@ -254,12 +254,12 @@ class Collection implements Enumeration
      *
      *
      * @return void
-     * @throws \EmptyEnumerationException
+     * @throws EmptyEnumerationException
      */
     private function assertNotEmpty()
     {
         if ($this->isEmpty()) {
-            throw new \EmptyEnumerationException('Collection is empty.');
+            throw new EmptyEnumerationException('Collection is empty.');
         }
     }
 }
