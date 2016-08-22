@@ -34,7 +34,7 @@ Install with [Composer](http://getcomposer.org):
 
 use perf\Enumeration\Collection;
 
-$array = (
+$array = array(
 	'foo',
 	'bar',
 	'baz',
@@ -71,7 +71,7 @@ $lastValue = $collection->last(); // 'baz'
 
 use perf\Enumeration\Collection;
 
-$array = (
+$array = array(
 	'foo',
 	'bar',
 	'baz',
@@ -101,7 +101,7 @@ foreach ($collection as $pair) {
 
 use perf\Enumeration\Map;
 
-$array = (
+$array = array(
 	'foo' => 123,
 	'bar' => 234,
 	'baz' => 345,
@@ -134,7 +134,7 @@ if ($map->has('foo')) { // true
 
 use perf\Enumeration\Map;
 
-$array = (
+$array = array(
 	'foo' => 123,
 	'bar' => 234,
 	'baz' => 345,
